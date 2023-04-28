@@ -69,17 +69,17 @@ void callback(const path_following::thrust& thrust_input){
 void key_callback(const std_msgs::String& key){
   char c = key.data[0];
   if(c == 'm'){
-    if (stop_flag==1){
-      stop_flag=0;
+    if (ctrl_flag==1){
+      ctrl_flag=0;
     }
     else{
       for (int i=0; i<NUMBER_OF_THRUSTER; i++){
         thrust[i]=1500;
       }
-      stop_flag=1;
+      ctrl_flag=1;
     }
   }
-  if(stop_flag==1){
+  if(ctrl_flag==1){
     if(c == 'w'){
       //digitalWrite(LED_BUILTIN, HIGH);
       thrust[0] += inc;
@@ -134,7 +134,6 @@ void setup() {
   nh.getHardware()->setBaud(115200);
   nh.initNode();
   nh.subscribe(sub);
-  nh.subscribe(stopsub);
 
 }
 void loop() {

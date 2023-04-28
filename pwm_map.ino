@@ -42,9 +42,9 @@ int pwm_mapping(double th){
   return a*pow(th,4)+b*pow(th,3)+c*pow(th,2)+d*th+e;
 }
 
-int stop_flag = 0;
+int ctrl_flag = 1;
 void callback(const path_following::thrust& thrust_input){
-  if (stop_flag==0){
+  if (ctrl_flag==0){
   thrust[0] = pwm_mapping(thrust_input.f_1);
   thrust[1] = pwm_mapping(thrust_input.f_2);
   thrust[2] = pwm_mapping(thrust_input.f_3);

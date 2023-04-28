@@ -10,7 +10,7 @@
 #define pin3 6
 #define pin4 5
 #define pos 1500
-#define inc 40
+#define inc 30
 #define NUMBER_OF_THRUSTER 4
 Servo th_servo[NUMBER_OF_THRUSTER];
 int pin[4] = {pin1, pin2, pin3, pin4};

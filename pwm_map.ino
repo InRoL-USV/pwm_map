@@ -65,15 +65,57 @@ void callback(const path_following::thrust& thrust_input){
   //}
 //  delay(160);
 }
-void stop_callback(const std_msgs::String& stop_signal){
-  for (int i=0; i<NUMBER_OF_THRUSTER; i++){
-    thrust[i]=0;
+
+void key_callback(const std_msgs::String& key){
+  char c = key.data[0];
+  if(c == 'm'){
+    if (stop_flag==1){
+      stop_flag=0;
+    }
+    else{
+      for (int i=0; i<NUMBER_OF_THRUSTER; i++){
+        thrust[i]=1500;
+      }
+      stop_flag=1;
+    }
   }
-  stop_flag = 1;
+  if(stop_flag==1){
+    if(c == 'w'){
+      //digitalWrite(LED_BUILTIN, HIGH);
+      thrust[0] += inc;
+      thrust[1] += inc;
+      thrust[2] += inc;
+      thrust[3] += inc;
+    }
+    else if(c == 'x'){
+      thrust[0] -= inc;
+      thrust[1] -= inc;
+      thrust[2] -= inc;
+      thrust[3] -= inc;
+    }
+    else if(c == 'a'){
+      thrust[0] -= inc;
+      thrust[1] += inc;
+      thrust[2] += inc;
+      thrust[3] -= inc;
+    }
+    else if(c == 'd'){
+      thrust[0] += inc;
+      thrust[1] -= inc;
+      thrust[2] -= inc;
+      thrust[3] += inc;
+    }
+    else if(c == 's'){
+      thrust[0] = 1500;
+      thrust[1] = 1500;
+      thrust[2] = 1500;
+      thrust[3] = 1500;
+    }
+  }
 }
 ros::Subscriber<path_following::thrust> sub("/thrust_data", callback);
 
-ros::Subscriber<std_msgs::String> stopsub("/stop_sig", stop_callback);
+ros::Subscriber<std_msgs::String> keysub("/key_pub", key_callback);
 
 void setup() {
 

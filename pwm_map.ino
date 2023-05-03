@@ -57,12 +57,12 @@ void callback(const path_following::thrust& thrust_input){
   thrust[1] = pwm_mapping(thrust_input.f_2);
   thrust[2] = pwm_mapping(thrust_input.f_3);
   thrust[3] = pwm_mapping(thrust_input.f_4);
+//  thrust[0]=1600;
+//  thrust[1]=1600;
+//  thrust[2]=1600;
+//  thrust[3]=1600;
   }
-  else{
-    for(int i=0; i<NUMBER_OF_THRUSTER; i++){
-      thrust[i]=0;
-    }
-  }
+
   //thrust[0] = 1600;
   //thrust[1] = 1600;
   //thrust[2] = 1600;
@@ -102,15 +102,15 @@ void key_callback(const std_msgs::String& key){
       thrust[3] -= inc;
     }
     else if(c == 'a'){
-      thrust[0] -= inc;
+      thrust[0] += inc;
       thrust[1] += inc;
-      thrust[2] += inc;
+      thrust[2] -= inc;
       thrust[3] -= inc;
     }
     else if(c == 'd'){
-      thrust[0] += inc;
+      thrust[0] -= inc;
       thrust[1] -= inc;
-      thrust[2] -= inc;
+      thrust[2] += inc;
       thrust[3] += inc;
     }
     else if(c == 's'){

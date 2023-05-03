@@ -5,13 +5,15 @@
 #include <std_msgs/Char.h>
 #include <string.h>
 #include "path_following/thrust.h"
-#define pin1 1
-#define pin2 4
-#define pin3 6
-#define pin4 5
+#define pin1 10
+#define pin2 9
+#define pin3 12
+#define pin4 11
 #define pos 1500
 #define inc 30
 #define NUMBER_OF_THRUSTER 4
+#define th_high 1760
+#define th_low 1240
 Servo th_servo[NUMBER_OF_THRUSTER];
 int pin[4] = {pin1, pin2, pin3, pin4};
 int thrust[4] = {1500, 1500, 1500, 1500};

@@ -150,9 +150,10 @@ void setup() {
   }
   //delay(10000);
 
-  nh.getHardware()->setBaud(115200);
+  nh.getHardware()->setBaud(57600);
   nh.initNode();
   nh.subscribe(sub);
+  nh.subscribe(keysub);
 
 }
 void loop() {
@@ -160,9 +161,10 @@ void loop() {
   //digitalWrite(LED_BUILTIN, LOW);
   //delay(10);
   nh.spinOnce();
-  //delay(10);
   for(int i=0; i<NUMBER_OF_THRUSTER; i++){
-    th_servo[i].write(thrust[i]);
+//    th_servo[i].write(max_constraint(thrust[i]));
+    th_servo[i].write(max_constraint(thrust[i]));
+
   }  
   //servoFL.write(th1); //1
   //servoFR.write(th4); //4

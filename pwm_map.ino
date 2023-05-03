@@ -121,9 +121,20 @@ void key_callback(const std_msgs::String& key){
     }
   }
 }
+int max_constraint(int thr){
+  if (thr>th_high){
+    return th_high;
+  }
+  else if(thr<th_low){
+    return th_low;
+  }
+  else{
+    return thr;
+  }
+}
 ros::Subscriber<path_following::thrust> sub("/thrust_data", callback);
 
-ros::Subscriber<std_msgs::String> keysub("/key_pub", key_callback);
+ros::Subscriber<std_msgs::String> keysub("/key_input", key_callback);
 
 void setup() {
 

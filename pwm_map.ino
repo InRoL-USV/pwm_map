@@ -26,22 +26,28 @@ int pwm_mapping(double th){
   double b=0;
   double c=0;
   double d=0;
-  double e=1500;
+  double e=0;
+  double f=0;
+  double g=1500;
   if (th > 0){
-    a=-0.1028;
-    b=2.3557;
-    c=-18.5975;
-    d=102.7624;
-    e=1500;
+    a=-0.0290;
+    b=0.8314;
+    c=-9.1853;
+    d=49.2322;
+    e=-132.9114;
+    f=190.5353;
+    g=1500;
   }
   else{
-    a=0.1297;
-    b=2.9214;
-    c=22.9818;
-    d=114.3421;
-    e=1500;
+    a=0.0736;
+    b=1.9132;
+    c=19.1244;
+    d=92.1220;
+    e=219.7946;
+    f=261.2094;
+    g=1500;
   }
-  return a*pow(th,4)+b*pow(th,3)+c*pow(th,2)+d*th+e;
+  return a*pow(th,6)+b*pow(th,5)+c*pow(th,4)+d*pow(th,3)+e*pow(th,2)+f*th+g;
 }
 
 int ctrl_flag = 1;
